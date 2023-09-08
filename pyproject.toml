@@ -9,6 +9,7 @@ readme = "README.md"
 python = "^3.11"
 warcio = "^1.7.4"
 sqlite-utils = "^3.35"
+pandas = "^2.1.0"
 
 
 [tool.poetry.group.test.dependencies]

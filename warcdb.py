@@ -1,8 +1,10 @@
+import pandas
+
 from sqlite_utils.db import Database
 from warcio.archiveiterator import ArchiveIterator
 
 
-def from_warc(warc_input, db_file=None) -> Database:
+def sqlite_from_warc(warc_input, db_file=None) -> Database:
     """
     Read in WARC data and return a SQLite database for it.
     """
@@ -14,6 +16,14 @@ def from_warc(warc_input, db_file=None) -> Database:
     load_warc(db, warc_input)
 
     return db
+
+
+def pandas_from_warc(warc_input):
+    """
+    Read in WARC data and return as a Pandas DataFrame.
+    """
+    db = sqlite_from_warc(warc_input)
+    return pandas.read_sql_query('SELECT * FROM records', db.conn)
 
 
 def load_warc(db, warc_input) -> Database:

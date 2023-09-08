@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "warcdb"
+version = "0.1.0"
+description = ""
+authors = ["Ed Summers <ehs@pobox.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+warcio = "^1.7.4"
+sqlite-utils = "^3.35"
+
+
+[tool.poetry.group.test.dependencies]
+pytest = "^7.4.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

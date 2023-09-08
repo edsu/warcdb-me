@@ -18,7 +18,7 @@ def sqlite_from_warc(warc_input, db_file=None) -> Database:
     return db
 
 
-def pandas_from_warc(warc_input):
+def pandas_from_warc(warc_input) -> pandas.DataFrame:
     """
     Read in WARC data and return as a Pandas DataFrame.
     """

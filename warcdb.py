@@ -47,4 +47,5 @@ def response_record(warc_record) -> dict:
     return {
         "warc_record_id": header("WARC-Record-ID"),
         "warc_twarget_uri": header("WARC-Target-URI"),
+        # TODO: add more columns!
     }

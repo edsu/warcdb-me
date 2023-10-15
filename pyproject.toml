@@ -5,16 +5,34 @@ description = ""
 authors = ["Ed Summers <ehs@pobox.com>"]
 readme = "README.md"
 
+[tool.poetry.scripts]
+warcdb = "warcdb.cli:cli"
+
 [tool.poetry.dependencies]
 python = "^3.11"
 warcio = "^1.7.4"
 sqlite-utils = "^3.35"
 pandas = "^2.1.0"
-
+click = "^8.1.7"
+python-dateutil = "^2.8.2"
 
 [tool.poetry.group.test.dependencies]
 pytest = "^7.4.2"
+black = "^23.9.1"
+
+[tool.poetry.group.dev.dependencies]
+ruff-lsp = "^0.0.40"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+include = ".py$"
+
+[tool.ruff]
+select = ["E", "F", "I", "N", "W", "ANN"]
+ignore = ["ANN101"]
+fixable = ["ALL"]
+unfixable = []
+line-length = 88

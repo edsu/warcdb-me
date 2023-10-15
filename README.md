@@ -2,7 +2,7 @@
 
 [![Build Status](https://github.com/edsu/warcdb/actions/workflows/test.yml/badge.svg)](https://github.com/edsu/warcdb/actions/workflows/test.yml)
 
-Use SQLite to analyze WARC data. You can import one or more WARC files into the database and then query it.
+WARC files can be a bit difficult to work with. *warcdb* lets you import WARC data into an SQLite database and then use SQL to analyze the WARC data.
 
 ## Install
 
@@ -11,6 +11,8 @@ $ pip install warcdb
 ```
 
 ## Command Line Usage
+
+Once installed you should have a *warcdb* utility available on the command line. *warcdb* takes a few subcommands that let you interact with the database.
 
 ### add
 

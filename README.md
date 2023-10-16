@@ -2,7 +2,7 @@
 
 [![Build Status](https://github.com/edsu/warcdb/actions/workflows/test.yml/badge.svg)](https://github.com/edsu/warcdb/actions/workflows/test.yml)
 
-WARC files can be a bit difficult to work with. *warcdb* lets you import WARC data into an SQLite database and then use SQL to analyze the WARC data.
+The [WARC] file format is used extensively in web archiving software, but most people aren't familiar with working with it directly because web archiving tools, such as replay systems hide the details of how to use it. This can make it somewhat difficult to use in data analysis work where you want to query the collected web archive data. *warcdb* tried to make analyzing WARC data easier by allowing you import it into an [SQLite] database, and then letting you use SQL and other SQLite tools like [Datasette] to analyze the WARC data.
 
 ## Install
 
@@ -174,10 +174,14 @@ last_modified
 
 ## Datasette
 
+One useful way of exploring the database is to view it with [datasette] with some additional plugins enabled for viewing JSON and images.
+
 ```
-pip install datasette datasette-render-images datasette-pretty-json
-datasette warc.db
+$ pip install datasette datasette-render-images datasette-pretty-json
+$ datasette warc.db
 ```
 
 [WARC Specification]: https://iipc.github.io/warc-specifications/specifications/warc-format/warc-1.1/
 [SQLite's JSON functions]: https://www.sqlite.org/json1.html
+[Datasette]: https://datasette.io/
+[SQLite]: https://www.sqlite.org/index.html

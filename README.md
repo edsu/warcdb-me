@@ -185,3 +185,4 @@ $ datasette warc.db
 [SQLite's JSON functions]: https://www.sqlite.org/json1.html
 [Datasette]: https://datasette.io/
 [SQLite]: https://www.sqlite.org/index.html
+[WARC]: https://en.wikipedia.org/wiki/WARC_(file_format)

@@ -45,16 +45,20 @@ class WARCDB(Database):
         records = self.db["records"]
         count = 0
         with open(warc_file, "rb") as stream:
-            for rec in ArchiveIterator(stream):
+            rec_iterator = ArchiveIterator(stream)
+            for rec in rec_iterator:
                 count += 1
                 records.insert(
-                    _record_dict(rec, files.last_pk),
+                    _record_dict(rec, files.last_pk, rec_iterator),
                     pk="id",
                     columns={
-                        "warc_content_legnth": int,
+                        "warc_content_length": int,
                         "warc_segment_total_length": int,
+                        "warcio_offset": int,
+                        "warcio_length": int,
                         "warc_date": datetime.datetime,
                         "http_date": datetime.datetime,
+                        "http_payload": "blob",
                         "warc_refers_to_date": datetime.datetime,
                     },
                 )
@@ -84,7 +88,9 @@ class WARCDB(Database):
         return self.db["records"].rows_where('warc_type = "response"')
 
 
-def _record_dict(rec: ArcWarcRecord, file_id: int) -> dict:
+def _record_dict(
+    rec: ArcWarcRecord, file_id: int, rec_iterator: ArchiveIterator
+) -> dict:
     """
     Turn a WARC record into a dictionary suitable for inserting into the records
     table.
@@ -130,6 +136,10 @@ def _record_dict(rec: ArcWarcRecord, file_id: int) -> dict:
         "http_date": parse_date(http_header("Date")),
         "http_content_length": http_header("Content-Length"),
         "http_headers": http_headers,
+        "http_payload": rec.content_stream().read(),
+        # Things from warcio
+        "warcio_offset": rec_iterator.get_record_offset(),
+        "warcio_length": rec_iterator.get_record_length(),
     }
 
 

@@ -96,13 +96,15 @@ CREATE TABLE [records] (
    [http_date] TEXT,
    [http_content_length] TEXT,
    [http_headers] TEXT,
-   [warc_content_legnth] INTEGER
+   [http_payload] BLOB,
+   [warcio_offset] INTEGER,
+   [warcio_length] INTEGER
 );
 ```
 
 All the WARC records are stored in the same table, but not all the columns will be populated depending on the `warc_type` which corresponds to the records `WARC-Type`: request, response, info, etc. See the [WARC Specification] for details.
 
-Most of the columns in the `records` table come directly from the [WARC Specification], however some HTTP headers have also been extracted to help in using the data, these are prefixed with `http_`
+Most of the columns in the `records` table come directly from the [WARC Specification], however some HTTP headers have also been extracted to help in using the data, these are prefixed with `http_`. This also includes the payload of the HTTP response. The `warcio_offset` and `warcio_length` columns contain integers that reference where in the original WARC data the record can be found.
 
 ### Queries
 
@@ -168,6 +170,13 @@ last_modified
 "Sun, 17 May 1998 03:00:00 GMT"
 "Tue, 14 May 2019 19:41:29 GMT"
 "Fri, 24 Jun 2022 20:44:18 GMT"
+```
+
+## Datasette
+
+```
+pip install datasette datasette-render-images datasette-pretty-json
+datasette warc.db
 ```
 
 [WARC Specification]: https://iipc.github.io/warc-specifications/specifications/warc-format/warc-1.1/

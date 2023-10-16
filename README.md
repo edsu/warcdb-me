@@ -2,7 +2,7 @@
 
 [![Build Status](https://github.com/edsu/warcdb/actions/workflows/test.yml/badge.svg)](https://github.com/edsu/warcdb/actions/workflows/test.yml)
 
-The [WARC] file format is used extensively in web archiving software, but most people aren't familiar with working with it directly because web archiving tools, such as replay systems hide the details of how to use it. This can make it somewhat difficult to use WARC data in analysis and research where you want to query and interact with the collected web archive data. *warcdb* tries to make analyzing WARC data easier by allowing you to import it into an [SQLite] database, and then letting you use SQL and other SQLite tools like [Datasette] to analyze the WARC data.
+The [WARC] file format is used extensively in web archiving software, but most people aren't familiar with working with it directly because web archiving tools, such as crawling and replay applications hide the nitty gritty details of how to use it. This can make it somewhat difficult to use WARC data in analysis and research where you want to query and interact with the collected web archive data. *warcdb* tries to make analyzing WARC data easier by allowing you to import it into an [SQLite] database, and then letting you use SQL and other SQLite tools like [Datasette] to analyze the WARC data.
 
 ## Install
 
